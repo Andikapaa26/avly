@@ -1,0 +1,44 @@
+<!--Avly Arfiani Khoirunnisaa-->
+<!--2101688-->
+<!--3A SIK-->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>{{ Heading }}</h1>
+
+<div class="container">
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">PROVINSI</th>
+            <th scope="col">KOTA</th>
+            <th scope="col">JENIS PENYU</th>
+            <th scope="col">STATUS KEBERADAAN</th>
+            <th scope="col">FOTO</th>
+            <th scope="col">LIHAT</th>
+            <th scope="col">AKSI</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for Konservasi in Konservasis %}
+                <tr>
+                    <td>{{ Konservasi.provinsi }}</td>
+                    <td>{{ Konservasi.kota }}</td>
+                    <td>{{ Konservasi.jenis_penyu }}</td>
+                    <td>{{ Konservasi.Status_keberadaan}}</td>
+                    <td><img width="100px" src="{% static Konservasi.img %}" alt=""> </td>
+                    <td align="center"><a class="btn btn-outline-secondary" href="{{ Konservasi.pk }}" role="button">Detail</a></td>
+                    <td>
+                      <a class="btn btn-sm btn-primary" href="{{ Konservasi.pk }}" role="button">Lihat</a><br><br>
+                      <a class="btn btn-sm btn-warning" href="{% url 'updatekonservasi' Konservasi.id %}" role="button">Edit</a><br><br>
+                      <a class="btn btn-sm btn-danger" href="{% url 'deletekonservasi' Konservasi.id %}"  role="button" >Hapus</a>
+                  </td>
+                  </tr>
+            {% endfor %} 
+        </tbody>
+      </table>
+      <br><br>
+    </div>
+
+{% endblock %}

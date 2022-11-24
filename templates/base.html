@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUGAS PBO 1 - AVLY ARFIANI KHOIRUNNISAA</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Navbar Start -->
+        <div class="container-fluid sticky-top bg-dark bg-light-radial shadow-sm px-5 pe-lg-0">
+            <nav class="navbar navbar-expand-lg bg-dark bg-light-radial navbar-dark py-3 py-lg-0">
+                <nav class="navbar bg-light">
+                    <div class="container">
+                      <a class="navbar-brand" href="#">
+                        <img src="{% static 'logopenyu.png' %}"  alt="Bootstrap" width="30" height="24">
+                      </a>
+                    </div>
+                  </nav>
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="m-0 display-4 text-uppercase text-white"><i class="bi bi-building text-primary me-2"></i>Chelonia</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="/index/" class="nav-item nav-link bg-primary text-white px-5 ms-3 d-none d-lg-block"> Beranda <i class="bi bi-arrow-right"></i></a>
+                        <a href="/tambahkonservasi/" class="nav-item nav-link bg-primary text-white px-5 ms-3 d-none d-lg-block"> Tambah Konservasi <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    <!-- Navbar End -->
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'penyuuU.jpg' %}" alt="" width = '100%'>
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <i class="fa fa-home fa-4x text-primary mb-4 d-none d-sm-block"></i>
+                            <h1 class="display-2 text-uppercase text-white mb-md-4">INDONESIA SEBAGAI EKOSISTEM PENYU DUNIA</h1>
+                            <a class="btn btn-primary py-md-3 px-md-5 mt-2">Penyu mempunyai peran penting dalam menjaga ekosistem laut yang sehat. Konservasi penyu merupakan kegiatan perlindungan dan pelestarian penyu demi mempertahankan keanekaragaman spesies penyu.</a>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <!-- Carousel End -->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer Start -->
+    <div class="footer container-fluid position-relative bg-dark bg-light-radial text-white-50 py-6 px-5">
+        <div class="row g-5">
+            <div class="col-lg-6 pe-lg-5">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="m-0 display-4 text-uppercase text-white"><i class="bi bi-building text-primary me-2"></i>CHELONIA</h1>
+                </a>
+                <p>"CHELONIA" merupakan sebuah situs memuat persebaran daerah konservasi penyu dan informasi seputar keberadaan penyu</p>
+                <p><i class="fa fa-map-marker-alt me-2"></i>Jl. Ciracas No.38, Serang, Kec. Serang, Kota Serang, Banten 42116</p>
+                <p><i class="fa fa-phone-alt me-2"></i>+0814-8936-8257</p>
+                <p><i class="fa fa-envelope me-2"></i>arfianiavly@gmail.com</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-0" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-6 ps-lg-5">
+                <div class="row g-5">
+                    <div class="col-sm-6">
+                        <h4 class="text-white text-uppercase mb-4">Quick Links</h4>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-white-50 mb-2" href="http://localhost:8000/index/"><i class="fa fa-angle-right me-2"></i>Beranda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark bg-light-radial text-white border-top border-primary px-0">
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div class="py-4 px-5 text-center text-md-start">
+                <p class="mb-0">&copy; <a class="text-primary" href="#">Universitas Pendidikan Indonesia</a>. All Rights Reserved.</p>
+            </div>
+            <div class="py-4 px-5 bg-primary footer-shape position-relative text-center text-md-end">
+                <p class="mb-0">Sistem Informasi Kelautan <a class="text-dark" ></a></p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
