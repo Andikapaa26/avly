@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app_utspbo1.views import *
+from app_utspbo1 import views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.auth.views import LoginView
+
 
 
 urlpatterns = [
@@ -25,4 +30,13 @@ urlpatterns = [
     path('tambahkonservasi/', tambahkonservasi),
     path("index/updatekonservasi/<int:id>", updatekonservasi, name = 'updatekonservasi'),
     path("index/deletekonservasi/<int:id_konservasi>", deletekonservasi, name = 'deletekonservasi'),
+    path('tambahlokasi/', tambahlokasi),
+    path("index/updatelokasi/<int:id>", updatelokasi, name = 'updatelokasi'),
+    path("index/deletelokasi/<int:id_konservasi>", deletelokasi, name = 'deletelokasi'),
+    path('signup/', signup,name='signup'),
+    path('login/', LoginView.as_view(),name='login'),
+    path('logout/', LogoutPage,name='logout'),
+    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

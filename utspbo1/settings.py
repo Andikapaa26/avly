@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 import django_on_heroku
-import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-doeu3d=2tgvoe8r)2)d@ve_#1!i2fyu%7m$$o-x2a29k6+lq^1
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
 
 
 # Application definition
@@ -130,3 +131,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_on_heroku. settings(locals())
+
+LOGIN_REDIRECT_URL = '/index/'
+LOGIN_URL = 'login'

@@ -10,3 +10,4 @@ class bukuadmin(admin.ModelAdmin):
 
 admin.site.register(Konservasi, bukuadmin)
 admin.site.register(Status)
+admin.site.register(Lokasi)

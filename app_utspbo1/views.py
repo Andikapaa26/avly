@@ -1,9 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from app_utspbo1.forms import formLokasi
 from .models import*
 from app_utspbo1.forms import formJurnal
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,login,logout
+from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
+def signup(request):
+    if request.POST:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "User Berhasil Di buat!")
+            return redirect('signup')
+        else:
+            messages.error(request, "Terjadi Kesalahan!")
+            return redirect('signup')
+    else:
+        form = UserCreationForm()
+        ctx = {
+            'form' : form,
+        }
+    return render(request, 'signup.html',ctx)
+
+@login_required(login_url=settings.LOGIN_URL)
 def index(request):
     Konservasis = Konservasi.objects.all()
     data = {
@@ -13,6 +38,7 @@ def index(request):
     }
     return render(request, 'index.html', data)
 
+@login_required(login_url=settings.LOGIN_URL)
 def detail(request, id):
     detailBook = Konservasi.objects.get(pk=id)
     data = {
@@ -21,7 +47,7 @@ def detail(request, id):
     }
     return render(request, 'detail.html', data)
 
-
+@login_required(login_url=settings.LOGIN_URL)
 def tambahkonservasi(request):
     if request.POST:
         form = formJurnal(request.POST)
@@ -46,7 +72,7 @@ def tambahkonservasi(request):
     }
     return render(request, 'tambahkonservasi.html', data)
 
-
+@login_required(login_url=settings.LOGIN_URL)
 def updatekonservasi(request, id):
     Jurnals = Konservasi.objects.get(id = id)
     template = "updatekonservasi.html"
@@ -73,13 +99,13 @@ def updatekonservasi(request, id):
         'Jurnal' : Jurnals,
     }
     return render(request, template, data)
-
+@login_required(login_url=settings.LOGIN_URL)
 def deletekonservasi(request, id_konservasi):
     Jurnals = Konservasi.objects.get(id = id_konservasi)
     Jurnals.delete()
 
     return redirect('/index/')
-
+@login_required(login_url=settings.LOGIN_URL)  
 def tambahlokasi(request):
     if request.POST:
         form = formLokasi(request.POST)
@@ -89,11 +115,11 @@ def tambahlokasi(request):
             judul = 'Tambah Data Titik Lokasi'
             pesan = 'Data Berhasil Ditambahkan!'
             data ={
-            'title' : judul,
-            'heading' : judul,
-            'form' : form,
-            'pesan' : pesan,
-        }
+        'title' : judul,
+        'heading' : judul,
+        'form' : form,
+        'pesan' : pesan
+    }
         return render(request, 'tambahlokasi.html', data)
     else:
         form = formLokasi()
@@ -104,7 +130,7 @@ def tambahlokasi(request):
     }
     return render(request, 'tambahlokasi.html', data)
 
-
+@login_required(login_url=settings.LOGIN_URL)
 def updatelokasi(request, id):
     Jurnals = Konservasi.objects.get(id = id)
     template = "updatelokasi.html"
@@ -131,9 +157,13 @@ def updatelokasi(request, id):
         'Jurnal' : Jurnals,
     }
     return render(request, template, data)
-
+@login_required(login_url=settings.LOGIN_URL)
 def deletelokasi(request, id_konservasi):
     Jurnals = Konservasi.objects.get(id = id_konservasi)
     Jurnals.delete()
 
     return redirect('/index/')
+
+def LogoutPage(request):
+    logout(request)
+    return redirect('login')
