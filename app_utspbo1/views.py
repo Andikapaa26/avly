@@ -80,4 +80,60 @@ def deletekonservasi(request, id_konservasi):
 
     return redirect('/index/')
 
-# Create your views here.
+def tambahlokasi(request):
+    if request.POST:
+        form = formLokasi(request.POST)
+        if form.is_valid():
+            form.save()
+            form = formLokasi()
+            judul = 'Tambah Data Titik Lokasi'
+            pesan = 'Data Berhasil Ditambahkan!'
+            data ={
+            'title' : judul,
+            'heading' : judul,
+            'form' : form,
+            'pesan' : pesan,
+        }
+        return render(request, 'tambahlokasi.html', data)
+    else:
+        form = formLokasi()
+        data ={
+        'title' : 'Tambah Data Titik Lokasi',
+        'heading' : 'Tambah Data Titik Lokasi',
+        'form' : form,
+    }
+    return render(request, 'tambahlokasi.html', data)
+
+
+def updatelokasi(request, id):
+    Jurnals = Konservasi.objects.get(id = id)
+    template = "updatelokasi.html"
+    if request.POST:
+        form = formJurnal(request.POST, instance=Jurnals)
+        if form.is_valid():
+            form.save()
+            pesan = "Data Berhasil Diupdate!"
+            data ={
+            'title' : "Halaman Update",
+            'heading' : "Mengubah Titik Lokasi",
+            'form' :form,
+            'pesan' : pesan,
+            'Jurnal' : Jurnals,
+
+    }
+        return render(request, template, data)
+    else:
+        form = formJurnal(instance=Jurnals)
+        data ={
+        'title' : "Halaman Update",
+        'heading' : "Mengubah Titik Lokasi",
+        'form' :form,
+        'Jurnal' : Jurnals,
+    }
+    return render(request, template, data)
+
+def deletelokasi(request, id_konservasi):
+    Jurnals = Konservasi.objects.get(id = id_konservasi)
+    Jurnals.delete()
+
+    return redirect('/index/')
